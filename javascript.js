@@ -24,17 +24,13 @@ class Teacher extends User {
     }
 
     isGroupTeacher(groupName) {
-        if (groupName == ("50b" || "51c")) {
-            return true;
-        }
-
-        else {
-            return false;
-        }
+        return this.groups.includes(groupName);
     }
 }
 
 class Student extends User {
+    static MIN_GRADE_FOR_SCHOLARSHIP = 4;
+
     constructor (name, lastName, age, group, averageGrade) {
         super (name, lastName, age, averageGrade)
         this.group = group;
@@ -44,15 +40,8 @@ class Student extends User {
     static MIN_GRADE_FOR_SCHOLARSHIP = 4;
 
     isEligibleForScholarship() {
-        if(Student.MIN_GRADE_FOR_SCHOLARSHIP <= this.averageGrade) {
-            return true;
-        }
-        
-        else {
-            return false;
-        }
-    }
-    
+        return Student.MIN_GRADE_FOR_SCHOLARSHIP <= this.averageGrade;
+    }    
 }
 
 const teacher1 = new Teacher('Brad', 'Pitt', 59, ['50b', '51c'], 41);
